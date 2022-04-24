@@ -4,7 +4,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Project deploy
 
-[Deploy](https://nikbabukhin.github.io/simplecalculator)
+[Deploy](https://nikbabukhin.github.io/SimpleCalculator/)
 
 ## Description
 
