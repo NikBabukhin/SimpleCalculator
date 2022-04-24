@@ -12,3 +12,9 @@ body {
     align-items: center;
     justify-content: center;
 }
+
+.delete-button-wrapper {
+    position: absolute;
+    right: 7%;
+    top: 21%;
+}

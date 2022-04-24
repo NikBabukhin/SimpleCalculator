@@ -1,7 +1,23 @@
 import {Button, Grid} from "@mui/material";
 import React from "react";
 
-export const ButtonsActions = () => {
+type ButtonsActionsPropsType = {
+    currentValue: string,
+    setResultHandler: () => void,
+    clearValue: () => void,
+    addSymbol: (currentSymbol: string) => void,
+}
+
+export const ButtonsActions: React.FC<ButtonsActionsPropsType> = (props) => {
+    const addSymbol = (value: string) => {
+        if (props.currentValue[props.currentValue.length - 1] !== value && props.currentValue && value !== '-') {
+            props.addSymbol(value)
+        }
+        if (props.currentValue[props.currentValue.length - 1] !== value && value === '-') {
+            props.addSymbol(value)
+        }
+    }
+
     return (
         <Grid
             item
@@ -13,19 +29,20 @@ export const ButtonsActions = () => {
             spacing={1}
         >
             <Grid item md={12}>
-                <Button variant="contained" size="medium" fullWidth>-</Button>
+                <Button variant="contained" size="medium" fullWidth onClick={() => addSymbol('-')}>-</Button>
             </Grid>
             <Grid item md={12}>
-                <Button variant="contained" size="medium" fullWidth>+</Button>
+                <Button variant="contained" size="medium" fullWidth onClick={() => addSymbol('+')}>+</Button>
             </Grid>
             <Grid item md={12}>
-                <Button variant="contained" size="medium" fullWidth>*</Button>
+                <Button variant="contained" size="medium" fullWidth onClick={() => addSymbol('*')}>*</Button>
             </Grid>
             <Grid item md={12}>
-                <Button variant="contained" size="medium" fullWidth>/</Button>
+                <Button variant="contained" size="medium" fullWidth onClick={() => addSymbol('/')}>/</Button>
             </Grid>
             <Grid item md={12}>
-                <Button variant="contained" size="medium" color={'secondary'} fullWidth>=</Button>
+                <Button variant="contained" size="medium" color={'secondary'} fullWidth
+                        onClick={props.setResultHandler}>=</Button>
             </Grid>
         </Grid>
     )

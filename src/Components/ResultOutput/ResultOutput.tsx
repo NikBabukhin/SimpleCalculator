@@ -1,10 +1,16 @@
 import style from "./ResultOutput.module.css"
+import React from "react";
 
-export const ResultOutput = () => {
+type ResultOutputPropsType = {
+    value: string,
+    result: string,
+}
+
+export const ResultOutput: React.FC<ResultOutputPropsType> = (props) => {
     return (
         <div className={style.result__wrapper}>
-            <input className={style.input}/>
-            <span className={style.result}>135</span>
+            <span className={style.current__expression}>{props.value || '0'}</span>
+            <span className={style.result}>{props.result || '0'}</span>
         </div>
     )
 }
