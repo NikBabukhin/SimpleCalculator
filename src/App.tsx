@@ -1,4 +1,4 @@
-import React, {useState, KeyboardEvent} from 'react';
+import React, {useState, KeyboardEvent, useRef, useEffect} from 'react';
 import './App.css';
 import {Button, Container, Grid} from "@mui/material";
 import {ResultOutput} from "./Components/ResultOutput/ResultOutput";
@@ -14,6 +14,14 @@ function App() {
     const [currentValue, setCurrentValue] = useState<string>('');
     const [result, setResult] = useState<string>('');
 
+    const app = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        if (app.current !== null) {
+            app.current.focus()
+        }
+    }, []);
+
     const clearValue = () => {
         setCurrentValue('')
         setResult('')
@@ -21,16 +29,20 @@ function App() {
     const clearLastSymbol = () => setCurrentValue(currentValue.substring(0, currentValue.length - 1));
 
     const setResultHandler = () => {
-        setResult(eval(currentValue).toString());
-        setCurrentValue(result);
+        fetch('http://localhost:3000/').then(() => {
+            setResult(eval(currentValue).toString())
+        })
+        setCurrentValue('')
     };
     const addSymbol = (currentSymbol: string) => {
         setCurrentValue(currentValue + currentSymbol)
     };
 
-
     const onKeyDownHandler = (event: KeyboardEvent<HTMLDivElement>) => {
         switch (event.code) {
+            case 'Tab':
+                event.preventDefault();
+                break;
             case 'Digit1':
             case 'Numpad1':
                 addSymbol('1');
@@ -102,11 +114,11 @@ function App() {
                 break;
             default:
                 return;
-        };
+        }
     }
 
     return (
-        <div className="App" onKeyDown={onKeyDownHandler} tabIndex={0}>
+        <div ref={app} className="App" onKeyDown={onKeyDownHandler} tabIndex={0}>
             <Container maxWidth="sm" sx={{
                 border: '2px solid #c9d1d9',
                 borderRadius: '5px',
