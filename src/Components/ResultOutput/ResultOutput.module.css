@@ -1,0 +1,32 @@
+.result__wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    width: 100%;
+    position: relative;
+}
+
+.input {
+    width: 100%;
+    padding: 20px 20px 50px;
+    background-color: #0d1117;
+    color: #c9d1d9;
+    text-align: right;
+    font-size: 30px;
+    letter-spacing: 2px;
+    border: 2px solid #c0c0ee;
+    border-radius: 15px;
+}
+
+.input:focus {
+    outline: none;
+}
+
+.result {
+    position: absolute;
+    font-size: 30px;
+    color: #787c81;
+    top: 50%;
+    right: 10%;
+}
