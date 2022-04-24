@@ -2,6 +2,10 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Project deploy
+
+[Deploy](https://nikbabukhin.github.io/simplecalculator)
+
 ## Description
 
 In this project I use `typescript`, `react`, `material ui`

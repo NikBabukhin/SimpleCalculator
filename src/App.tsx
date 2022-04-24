@@ -29,10 +29,10 @@ function App() {
     const clearLastSymbol = () => setCurrentValue(currentValue.substring(0, currentValue.length - 1));
 
     const setResultHandler = () => {
-        fetch('http://localhost:3000/').then(() => {
+        if (currentValue) {
             setResult(eval(currentValue).toString())
-        })
-        setCurrentValue('')
+            setCurrentValue('')
+        }
     };
     const addSymbol = (currentSymbol: string) => {
         setCurrentValue(currentValue + currentSymbol)
